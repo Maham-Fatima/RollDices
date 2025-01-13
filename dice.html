@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll a Dice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Roll a Dice</h1>
+        <div class="value">
+
+            <img src="perspective-dice-six-faces-random.png" alt="" id="img" width="100px"><br>
+            <input type="number" name="number" id="number" min="1" max="6">
+            <input type="button" value="Roll" id="dice">
+        </div>
+        <br>
+        <hr>
+        <h1 id="result">Your Dice</h1>
+        <div id="container">
+          
+        </div>
+        <br>
+
+        
+    </main>
+    <script>
+        let dices = 0;
+        
+        document.getElementById("number").onchange = (event)=>{
+            event.preventDefault();
+            dices = document.getElementById("number").value;
+            document.getElementById("container").innerHTML = "";
+            console.log(dices);
+            for(let i = 0; i < dices;i++){
+             console.log(i);
+             img = document.createElement("img");
+             img.src = "perspective-dice-six-faces-random.png";
+             img.classList.add("dice");
+             document.getElementById("container").appendChild(img);
+            }
+        };
+        document.getElementById("dice").addEventListener("click", (event)=>{
+            event.preventDefault();
+            dices = document.getElementById("number").value;
+            let sum = 0;
+            console.log(dices);
+            for(let i=0; i < dices; i++)
+           {
+            let num = Math.round(Math.random() * 5) + 1;
+            sum = sum+num;
+            document.getElementById("container").getElementsByTagName("img")[i].src = "dice-six-faces-" + num + ".png" ;
+           }            
+
+            
+            document.getElementById("result").innerText =  `Total is ${sum}`;
+        });
+    </script>
+</body>
+</html>
